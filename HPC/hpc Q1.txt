@@ -1,0 +1,2943 @@
+Microsoft Windows [Version 10.0.22631.6199]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\PC>ssh -p 5070 vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com
+vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com's password:
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1089-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Mar 18 14:57:16 UTC 2026
+
+  System load:  0.65                Processes:             222
+  Usage of /:   23.0% of 123.87GB   Users logged in:       0
+  Memory usage: 0%                  IPv4 address for eth0: 10.0.0.74
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Infrastructure is not enabled.
+
+108 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+150 additional security updates can be applied with ESM Infra.
+Learn more about enabling ESM Infra service for Ubuntu 20.04 at
+https://ubuntu.com/20-04
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+New release '22.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Wed Mar 18 12:37:40 2026 from 148.252.133.198
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$ ls
+hpcbd_coursework  mmu-hpc
+vm_admin@labY7013I:~$ cd hpcbd_coursework
+vm_admin@labY7013I:~/hpcbd_coursework$ ls
+mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework$ cd hpc
+-bash: cd: hpc: No such file or directory
+vm_admin@labY7013I:~/hpcbd_coursework$ cd mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ ls
+2022-2023  2023-2024  2024-2025  2025-2026  lab01.tar  lab_CUDA  lab_MPI  lab_OpenMP  lab_compile
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ cd 2025-2026
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  40K.txt  aeroRoutines.c  autogenRoutines.c  fullStat_driver-ASSESS.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ gcc -O0 -fopenmp fullStat_driver-ASSESS.c autogenRoutines.c -lm -o fullstat
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.094132 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000297 seconds
+calculating eigenvalue to tolerance 0.010000
+
+^C
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ nproc
+1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ lscpu | grep "^CPU(s):"
+CPU(s):                               12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ echo 1000 > 1K.txt
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  1K.txt  25K.txt  40K.txt  aeroRoutines.c  autogenRoutines.c  fullStat_driver-ASSESS.c  fullstat
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012379 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000023 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.276200 seconds
+Total stats wallclock time [0.276254 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.288741 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012346 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000093 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.281537 seconds
+Total stats wallclock time [0.281665 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.294102 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012399 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000157 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.279758 seconds
+Total stats wallclock time [0.279959 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.292452 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.013280 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000275 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.290277 seconds
+Total stats wallclock time [0.290600 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.303972 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ cp fullStat_driver-ASSESS.c fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullstat
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ nano fullStat_driver_q1.c
+
+
+Use "fg" to return to nano.
+
+[1]+  Stopped                 nano fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullstat
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ nano fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullstat
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ rm fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  1K.txt  25K.txt  40K.txt  aeroRoutines.c  autogenRoutines.c  fullStat_driver-ASSESS.c  fullstat
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ cp fullStat_driver-ASSESS.c fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullstat
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ nano fullStat_driver_q1.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ gcc -O0 -fopenmp fullStat_driver_q1.c autogenRoutines.c -lm -o fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012674 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000025 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.285142 seconds
+Total stats wallclock time [0.285200 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.297969 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.014803 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000095 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.286566 seconds
+Total stats wallclock time [0.286701 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.301602 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.016178 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000166 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.289128 seconds
+Total stats wallclock time [0.289333 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.305612 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012686 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000289 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.281500 seconds
+Total stats wallclock time [0.281825 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.294599 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullstat
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c      fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ cp fullStat_driver_q1.c fullStat_driver_q1_v2.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullStat_driver_q1_v2.c  fullstat_q1
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c      fullstat
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ nano fullStat_driver_q1_v2.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ gcc -O0 -fopenmp fullStat_driver_q1_v2.c autogenRoutines.c -lm -o fullstat_q1_v2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v2 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.016165 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000025 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.280470 seconds
+Total stats wallclock time [0.280525 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.296787 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v2 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.014266 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000107 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.147827 seconds
+Total stats wallclock time [0.147968 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.162328 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v2 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.013192 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000166 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.072860 seconds
+Total stats wallclock time [0.073064 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.086365 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v2 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.015481 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000286 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.070657 seconds
+Total stats wallclock time [0.070989 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.086570 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ cp fullStat_driver_q1_v2.c fullStat_driver_q1_v3.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  25K.txt  aeroRoutines.c     fullStat_driver-ASSESS.c  fullStat_driver_q1_v2.c  fullstat     fullstat_q1_v2
+1K.txt   40K.txt  autogenRoutines.c  fullStat_driver_q1.c      fullStat_driver_q1_v3.c  fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ nano fullStat_driver_q1_v3.cnano fullStat_driver_q1_v3.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ gcc -O0 -fopenmp fullStat_driver_q1_v3.c autogenRoutines.c -lm -o fullstat_q1_v3
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012692 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000032 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.274662 seconds
+Total stats wallclock time [0.274728 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.287519 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012902 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000090 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.148555 seconds
+Total stats wallclock time [0.148687 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.161697 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012686 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000158 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.070414 seconds
+Total stats wallclock time [0.070598 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.083371 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.012724 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000274 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 0.072987 seconds
+Total stats wallclock time [0.073310 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.086137 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ echo 4000 > 4K.txt
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ echo 8000 > 8K.txt
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  40K.txt  aeroRoutines.c            fullStat_driver_q1.c     fullstat        fullstat_q1_v3
+1K.txt   4K.txt   autogenRoutines.c         fullStat_driver_q1_v2.c  fullstat_q1
+25K.txt  8K.txt   fullStat_driver-ASSESS.c  fullStat_driver_q1_v3.c  fullstat_q1_v2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 4K.txt
+we have 4000 data points to read
+There are allegedly 4000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+4000 data points successfully read [0.250504 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000081 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 5.413343 seconds
+Total stats wallclock time [5.413463 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.003327         9.997833        -0.066949               5.864137
+Eigen value of matrix: 20694.653774 (37 iterations)
+Completed (read+stats). [5.664085 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 4K.txt
+we have 4000 data points to read
+There are allegedly 4000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+4000 data points successfully read [0.251473 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000165 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 2.735707 seconds
+Total stats wallclock time [2.735913 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.003327         9.997833        -0.066949               5.864137
+Eigen value of matrix: 20694.653774 (37 iterations)
+Completed (read+stats). [2.987497 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 4K.txt
+we have 4000 data points to read
+There are allegedly 4000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+4000 data points successfully read [0.256452 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000208 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 1.363941 seconds
+Total stats wallclock time [1.364193 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.003327         9.997833        -0.066949               5.864137
+Eigen value of matrix: 20694.653774 (37 iterations)
+Completed (read+stats). [1.620754 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 4K.txt
+we have 4000 data points to read
+There are allegedly 4000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+4000 data points successfully read [0.248301 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000343 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 1.182764 seconds
+Total stats wallclock time [1.183155 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.003327         9.997833        -0.066949               5.864137
+Eigen value of matrix: 20694.653774 (37 iterations)
+Completed (read+stats). [1.431580 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  40K.txt  aeroRoutines.c            fullStat_driver_q1.c     fullstat        fullstat_q1_v3
+1K.txt   4K.txt   autogenRoutines.c         fullStat_driver_q1_v2.c  fullstat_q1
+25K.txt  8K.txt   fullStat_driver-ASSESS.c  fullStat_driver_q1_v3.c  fullstat_q1_v2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.143267 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000299 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.915255 seconds
+Total stats wallclock time [146.915595 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.058979 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.177735 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000292 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 79.308122 seconds
+Total stats wallclock time [79.308455 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [83.486309 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.219889 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000305 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 43.265618 seconds
+Total stats wallclock time [43.265968 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [47.485980 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.165223 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000394 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 32.203631 seconds
+Total stats wallclock time [32.204070 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [36.369413 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.207620 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000506 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 29.803650 seconds
+Total stats wallclock time [29.804319 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [34.012111 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [10.208945 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000453 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.163038 seconds
+Total stats wallclock time [269.163532 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.373042 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [10.036171 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000351 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 136.140550 seconds
+Total stats wallclock time [136.140959 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [146.177263 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.988812 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000352 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 69.722992 seconds
+Total stats wallclock time [69.723394 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [79.712348 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [10.026660 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000393 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 52.821583 seconds
+Total stats wallclock time [52.822027 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [62.848814 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [10.078343 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000500 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 52.882435 seconds
+Total stats wallclock time [52.883152 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [62.962168 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+
+
+
+
+vm_admin@labY7013I:~$ cd hpcbd_coursework
+vm_admin@labY7013I:~/hpcbd_coursework$ ls
+mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework$ cd mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ ls
+2022-2023  2023-2024  2024-2025  2025-2026  lab01.tar  lab_CUDA  lab_MPI  lab_OpenMP  lab_compile
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ cd 2025-2026
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  40K.txt  aeroRoutines.c            fullStat_driver_q1.c       fullStat_driver_q1_v3.c  fullstat_q1_v2
+1K.txt   4K.txt   autogenRoutines.c         fullStat_driver_q1.c.save  fullstat                 fullstat_q1_v3
+25K.txt  8K.txt   fullStat_driver-ASSESS.c  fullStat_driver_q1_v2.c    fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.168349 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000310 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 142.628299 seconds
+Total stats wallclock time [142.628651 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [146.802299 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.175103 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000304 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 141.593508 seconds
+Total stats wallclock time [141.593848 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [145.769076 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.174525 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000263 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 81.816598 seconds
+Total stats wallclock time [81.816903 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [85.991545 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.309065 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000269 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 81.606386 seconds
+Total stats wallclock time [81.606698 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [85.915882 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.184078 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000259 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 45.210859 seconds
+Total stats wallclock time [45.211158 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [49.395359 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.284575 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000264 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 44.291454 seconds
+Total stats wallclock time [44.291754 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [48.576454 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.141864 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000405 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 31.946968 seconds
+Total stats wallclock time [31.947418 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [36.089407 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.305039 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000387 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 32.514010 seconds
+Total stats wallclock time [32.514446 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [36.819613 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.133906 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000509 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 29.036525 seconds
+Total stats wallclock time [29.037103 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [33.171204 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.237267 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000514 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 28.794531 seconds
+Total stats wallclock time [28.795116 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [33.032517 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.903178 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000454 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 258.120920 seconds
+Total stats wallclock time [258.121454 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [268.025147 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.911207 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000469 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 258.004151 seconds
+Total stats wallclock time [258.004660 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [267.915997 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.990859 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000876 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 131.676857 seconds
+Total stats wallclock time [131.677775 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [141.668764 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.950506 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000361 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 131.365539 seconds
+Total stats wallclock time [131.365944 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [141.316593 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.954854 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000317 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 68.173964 seconds
+Total stats wallclock time [68.174321 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [78.129304 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.876282 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000294 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 67.816325 seconds
+Total stats wallclock time [67.816658 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [77.693076 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.984731 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000444 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 51.127452 seconds
+Total stats wallclock time [51.127948 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [61.112820 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.898788 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000413 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 51.057592 seconds
+Total stats wallclock time [51.058047 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [60.956974 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.853930 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000524 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 50.856115 seconds
+Total stats wallclock time [50.856688 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [60.710795 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1_v3 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.902756 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000524 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 50.190126 seconds
+Total stats wallclock time [50.190851 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [60.094754 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+
+
+
+Microsoft Windows [Version 10.0.22631.6199]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\PC>ssh -p 5070 vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com
+vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com's password:
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1089-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Mar 19 14:32:02 UTC 2026
+
+  System load:  0.11                Processes:             220
+  Usage of /:   23.0% of 123.87GB   Users logged in:       0
+  Memory usage: 0%                  IPv4 address for eth0: 10.0.0.74
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Infrastructure is not enabled.
+
+108 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+150 additional security updates can be applied with ESM Infra.
+Learn more about enabling ESM Infra service for Ubuntu 20.04 at
+https://ubuntu.com/20-04
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Wed Mar 18 21:39:34 2026 from 148.252.141.104
+vm_admin@labY7013I:~$ ls
+hpcbd_coursework  mmu-hpc
+vm_admin@labY7013I:~$ cd hpcbd_coursework
+vm_admin@labY7013I:~/hpcbd_coursework$ ls
+mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework$ cd mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ ls
+2022-2023  2023-2024  2024-2025  2025-2026  lab01.tar  lab_CUDA  lab_MPI  lab_OpenMP  lab_compile
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ cd 2025-2026
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  40K.txt  aeroRoutines.c            fullStat_driver_q1.c       fullStat_driver_q1_v3.c  fullstat_q1_v2
+1K.txt   4K.txt   autogenRoutines.c         fullStat_driver_q1.c.save  fullstat                 fullstat_q1_v3
+25K.txt  8K.txt   fullStat_driver-ASSESS.c  fullStat_driver_q1_v2.c    fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ sudo apt update
+Hit:1 http://azure.archive.ubuntu.com/ubuntu focal InRelease
+Get:2 http://azure.archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+Get:3 http://azure.archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+Get:4 http://azure.archive.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+Get:5 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  InRelease [1581 B]
+Get:6 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [3957 kB]
+Get:7 http://azure.archive.ubuntu.com/ubuntu focal-security/main amd64 Packages [3564 kB]
+Get:8 https://apt.repos.intel.com/oneapi all InRelease [5680 B]
+Get:9 https://apt.repos.intel.com/oneapi all/main amd64 Packages [654 kB]
+Get:10 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  Packages [2788 kB]
+Fetched 11.4 MB in 2s (7311 kB/s)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+41 packages can be upgraded. Run 'apt list --upgradable' to see them.
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ sudo apt install -y openmpi-bin libopenmpi-dev
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  autoconf automake autotools-dev flang-18 ibverbs-providers libasan6 libcaf-openmpi-3 libclang-cpp18 libcoarrays-dev
+  libcoarrays-openmpi-dev libevent-core-2.1-7 libevent-dev libevent-extra-2.1-7 libevent-openssl-2.1-7
+  libevent-pthreads-2.1-7 libfabric1 libflang-18-dev libgcc-10-dev libhwloc-dev libhwloc-plugins libhwloc15
+  libibverbs-dev libibverbs1 libllvm18 libltdl-dev libnl-3-dev libnl-route-3-dev libnuma-dev libopenmpi3 libpmix2
+  libpsm-infinipath1 libpsm2-2 librdmacm1 libstdc++-10-dev libtool m4 openmpi-common
+Suggested packages:
+  autoconf-archive gnu-standards autoconf-doc gettext libhwloc-contrib-plugins libtool-doc openmpi-doc
+  libstdc++-10-doc gfortran | fortran95-compiler gcj-jdk m4-doc
+The following NEW packages will be installed:
+  autoconf automake autotools-dev flang-18 ibverbs-providers libasan6 libcaf-openmpi-3 libclang-cpp18 libcoarrays-dev
+  libcoarrays-openmpi-dev libevent-core-2.1-7 libevent-dev libevent-extra-2.1-7 libevent-openssl-2.1-7
+  libevent-pthreads-2.1-7 libfabric1 libflang-18-dev libgcc-10-dev libhwloc-dev libhwloc-plugins libhwloc15
+  libibverbs-dev libibverbs1 libllvm18 libltdl-dev libnl-3-dev libnl-route-3-dev libnuma-dev libopenmpi-dev
+  libopenmpi3 libpmix2 libpsm-infinipath1 libpsm2-2 librdmacm1 libstdc++-10-dev libtool m4 openmpi-bin openmpi-common
+0 upgraded, 39 newly installed, 0 to remove and 41 not upgraded.
+Need to get 94.9 MB of archives.
+After this operation, 1239 MB of additional disk space will be used.
+Get:1 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 m4 amd64 1.4.18-4 [199 kB]
+Get:2 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 autoconf all 2.69-11.1 [321 kB]
+Get:3 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 autotools-dev all 20180224.1 [39.6 kB]
+Get:4 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 automake all 1:1.16.1-4ubuntu6 [522 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libllvm18 amd64 1:18.1.8-11~20.04.2 [24.8 MB]
+Get:6 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libclang-cpp18 amd64 1:18.1.8-11~20.04.2 [12.3 MB]
+Get:7 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libasan6 amd64 10.5.0-1ubuntu1~20.04 [2064 kB]
+Get:8 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libgcc-10-dev amd64 10.5.0-1ubuntu1~20.04 [2344 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libstdc++-10-dev amd64 10.5.0-1ubuntu1~20.04 [1781 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libflang-18-dev amd64 1:18.1.8-11~20.04.2 [20.8 MB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 flang-18 amd64 1:18.1.8-11~20.04.2 [23.2 MB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libibverbs1 amd64 28.0-1ubuntu1 [53.6 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 ibverbs-providers amd64 28.0-1ubuntu1 [232 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libevent-core-2.1-7 amd64 2.1.11-stable-1 [89.1 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libevent-pthreads-2.1-7 amd64 2.1.11-stable-1 [7372 B]
+Get:16 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libpsm-infinipath1 amd64 3.3+20.604758e7-6 [168 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libpsm2-2 amd64 11.2.86-1 [178 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 librdmacm1 amd64 28.0-1ubuntu1 [64.9 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libfabric1 amd64 1.6.2-3ubuntu0.1 [396 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libhwloc15 amd64 2.1.0+dfsg-4 [134 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libhwloc-plugins amd64 2.1.0+dfsg-4 [14.4 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libpmix2 amd64 3.1.5-1 [442 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libopenmpi3 amd64 4.0.3-0ubuntu1 [1978 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libcaf-openmpi-3 amd64 2.8.0-1 [35.5 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libcoarrays-dev amd64 2.8.0-1 [28.2 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 openmpi-common all 4.0.3-0ubuntu1 [151 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 openmpi-bin amd64 4.0.3-0ubuntu1 [67.4 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libcoarrays-openmpi-dev amd64 2.8.0-1 [34.2 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libevent-extra-2.1-7 amd64 2.1.11-stable-1 [60.0 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libevent-openssl-2.1-7 amd64 2.1.11-stable-1 [14.3 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libevent-dev amd64 2.1.11-stable-1 [261 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libltdl-dev amd64 2.4.6-14 [162 kB]
+Get:33 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnl-3-dev amd64 3.4.0-1ubuntu0.1 [92.9 kB]
+Get:34 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnl-route-3-dev amd64 3.4.0-1ubuntu0.1 [167 kB]
+Get:35 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libtool all 2.4.6-14 [161 kB]
+Get:36 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libnuma-dev amd64 2.0.12-1 [32.4 kB]
+Get:37 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libhwloc-dev amd64 2.1.0+dfsg-4 [205 kB]
+Get:38 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libibverbs-dev amd64 28.0-1ubuntu1 [444 kB]
+Get:39 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libopenmpi-dev amd64 4.0.3-0ubuntu1 [798 kB]
+Fetched 94.9 MB in 1s (72.2 MB/s)
+Extracting templates from packages: 100%
+Selecting previously unselected package m4.
+(Reading database ... 158589 files and directories currently installed.)
+Preparing to unpack .../00-m4_1.4.18-4_amd64.deb ...
+Unpacking m4 (1.4.18-4) ...
+Selecting previously unselected package autoconf.
+Preparing to unpack .../01-autoconf_2.69-11.1_all.deb ...
+Unpacking autoconf (2.69-11.1) ...
+Selecting previously unselected package autotools-dev.
+Preparing to unpack .../02-autotools-dev_20180224.1_all.deb ...
+Unpacking autotools-dev (20180224.1) ...
+Selecting previously unselected package automake.
+Preparing to unpack .../03-automake_1%3a1.16.1-4ubuntu6_all.deb ...
+Unpacking automake (1:1.16.1-4ubuntu6) ...
+Selecting previously unselected package libllvm18:amd64.
+Preparing to unpack .../04-libllvm18_1%3a18.1.8-11~20.04.2_amd64.deb ...
+Unpacking libllvm18:amd64 (1:18.1.8-11~20.04.2) ...
+Selecting previously unselected package libclang-cpp18.
+Preparing to unpack .../05-libclang-cpp18_1%3a18.1.8-11~20.04.2_amd64.deb ...
+Unpacking libclang-cpp18 (1:18.1.8-11~20.04.2) ...
+Selecting previously unselected package libasan6:amd64.
+Preparing to unpack .../06-libasan6_10.5.0-1ubuntu1~20.04_amd64.deb ...
+Unpacking libasan6:amd64 (10.5.0-1ubuntu1~20.04) ...
+Selecting previously unselected package libgcc-10-dev:amd64.
+Preparing to unpack .../07-libgcc-10-dev_10.5.0-1ubuntu1~20.04_amd64.deb ...
+Unpacking libgcc-10-dev:amd64 (10.5.0-1ubuntu1~20.04) ...
+Selecting previously unselected package libstdc++-10-dev:amd64.
+Preparing to unpack .../08-libstdc++-10-dev_10.5.0-1ubuntu1~20.04_amd64.deb ...
+Unpacking libstdc++-10-dev:amd64 (10.5.0-1ubuntu1~20.04) ...
+Selecting previously unselected package libflang-18-dev.
+Preparing to unpack .../09-libflang-18-dev_1%3a18.1.8-11~20.04.2_amd64.deb ...
+Unpacking libflang-18-dev (1:18.1.8-11~20.04.2) ...
+Selecting previously unselected package flang-18.
+Preparing to unpack .../10-flang-18_1%3a18.1.8-11~20.04.2_amd64.deb ...
+Unpacking flang-18 (1:18.1.8-11~20.04.2) ...
+Selecting previously unselected package libibverbs1:amd64.
+Preparing to unpack .../11-libibverbs1_28.0-1ubuntu1_amd64.deb ...
+Unpacking libibverbs1:amd64 (28.0-1ubuntu1) ...
+Selecting previously unselected package ibverbs-providers:amd64.
+Preparing to unpack .../12-ibverbs-providers_28.0-1ubuntu1_amd64.deb ...
+Unpacking ibverbs-providers:amd64 (28.0-1ubuntu1) ...
+Selecting previously unselected package libevent-core-2.1-7:amd64.
+Preparing to unpack .../13-libevent-core-2.1-7_2.1.11-stable-1_amd64.deb ...
+Unpacking libevent-core-2.1-7:amd64 (2.1.11-stable-1) ...
+Selecting previously unselected package libevent-pthreads-2.1-7:amd64.
+Preparing to unpack .../14-libevent-pthreads-2.1-7_2.1.11-stable-1_amd64.deb ...
+Unpacking libevent-pthreads-2.1-7:amd64 (2.1.11-stable-1) ...
+Selecting previously unselected package libpsm-infinipath1.
+Preparing to unpack .../15-libpsm-infinipath1_3.3+20.604758e7-6_amd64.deb ...
+Unpacking libpsm-infinipath1 (3.3+20.604758e7-6) ...
+Selecting previously unselected package libpsm2-2.
+Preparing to unpack .../16-libpsm2-2_11.2.86-1_amd64.deb ...
+Unpacking libpsm2-2 (11.2.86-1) ...
+Selecting previously unselected package librdmacm1:amd64.
+Preparing to unpack .../17-librdmacm1_28.0-1ubuntu1_amd64.deb ...
+Unpacking librdmacm1:amd64 (28.0-1ubuntu1) ...
+Selecting previously unselected package libfabric1.
+Preparing to unpack .../18-libfabric1_1.6.2-3ubuntu0.1_amd64.deb ...
+Unpacking libfabric1 (1.6.2-3ubuntu0.1) ...
+Selecting previously unselected package libhwloc15:amd64.
+Preparing to unpack .../19-libhwloc15_2.1.0+dfsg-4_amd64.deb ...
+Unpacking libhwloc15:amd64 (2.1.0+dfsg-4) ...
+Selecting previously unselected package libhwloc-plugins:amd64.
+Preparing to unpack .../20-libhwloc-plugins_2.1.0+dfsg-4_amd64.deb ...
+Unpacking libhwloc-plugins:amd64 (2.1.0+dfsg-4) ...
+Selecting previously unselected package libpmix2:amd64.
+Preparing to unpack .../21-libpmix2_3.1.5-1_amd64.deb ...
+Unpacking libpmix2:amd64 (3.1.5-1) ...
+Selecting previously unselected package libopenmpi3:amd64.
+Preparing to unpack .../22-libopenmpi3_4.0.3-0ubuntu1_amd64.deb ...
+Unpacking libopenmpi3:amd64 (4.0.3-0ubuntu1) ...
+Selecting previously unselected package libcaf-openmpi-3:amd64.
+Preparing to unpack .../23-libcaf-openmpi-3_2.8.0-1_amd64.deb ...
+Unpacking libcaf-openmpi-3:amd64 (2.8.0-1) ...
+Selecting previously unselected package libcoarrays-dev:amd64.
+Preparing to unpack .../24-libcoarrays-dev_2.8.0-1_amd64.deb ...
+Unpacking libcoarrays-dev:amd64 (2.8.0-1) ...
+Selecting previously unselected package openmpi-common.
+Preparing to unpack .../25-openmpi-common_4.0.3-0ubuntu1_all.deb ...
+Unpacking openmpi-common (4.0.3-0ubuntu1) ...
+Selecting previously unselected package openmpi-bin.
+Preparing to unpack .../26-openmpi-bin_4.0.3-0ubuntu1_amd64.deb ...
+Unpacking openmpi-bin (4.0.3-0ubuntu1) ...
+Selecting previously unselected package libcoarrays-openmpi-dev:amd64.
+Preparing to unpack .../27-libcoarrays-openmpi-dev_2.8.0-1_amd64.deb ...
+Unpacking libcoarrays-openmpi-dev:amd64 (2.8.0-1) ...
+Selecting previously unselected package libevent-extra-2.1-7:amd64.
+Preparing to unpack .../28-libevent-extra-2.1-7_2.1.11-stable-1_amd64.deb ...
+Unpacking libevent-extra-2.1-7:amd64 (2.1.11-stable-1) ...
+Selecting previously unselected package libevent-openssl-2.1-7:amd64.
+Preparing to unpack .../29-libevent-openssl-2.1-7_2.1.11-stable-1_amd64.deb ...
+Unpacking libevent-openssl-2.1-7:amd64 (2.1.11-stable-1) ...
+Selecting previously unselected package libevent-dev.
+Preparing to unpack .../30-libevent-dev_2.1.11-stable-1_amd64.deb ...
+Unpacking libevent-dev (2.1.11-stable-1) ...
+Selecting previously unselected package libltdl-dev:amd64.
+Preparing to unpack .../31-libltdl-dev_2.4.6-14_amd64.deb ...
+Unpacking libltdl-dev:amd64 (2.4.6-14) ...
+Selecting previously unselected package libnl-3-dev:amd64.
+Preparing to unpack .../32-libnl-3-dev_3.4.0-1ubuntu0.1_amd64.deb ...
+Unpacking libnl-3-dev:amd64 (3.4.0-1ubuntu0.1) ...
+Selecting previously unselected package libnl-route-3-dev:amd64.
+Preparing to unpack .../33-libnl-route-3-dev_3.4.0-1ubuntu0.1_amd64.deb ...
+Unpacking libnl-route-3-dev:amd64 (3.4.0-1ubuntu0.1) ...
+Selecting previously unselected package libtool.
+Preparing to unpack .../34-libtool_2.4.6-14_all.deb ...
+Unpacking libtool (2.4.6-14) ...
+Selecting previously unselected package libnuma-dev:amd64.
+Preparing to unpack .../35-libnuma-dev_2.0.12-1_amd64.deb ...
+Unpacking libnuma-dev:amd64 (2.0.12-1) ...
+Selecting previously unselected package libhwloc-dev:amd64.
+Preparing to unpack .../36-libhwloc-dev_2.1.0+dfsg-4_amd64.deb ...
+Unpacking libhwloc-dev:amd64 (2.1.0+dfsg-4) ...
+Selecting previously unselected package libibverbs-dev:amd64.
+Preparing to unpack .../37-libibverbs-dev_28.0-1ubuntu1_amd64.deb ...
+Unpacking libibverbs-dev:amd64 (28.0-1ubuntu1) ...
+Selecting previously unselected package libopenmpi-dev:amd64.
+Preparing to unpack .../38-libopenmpi-dev_4.0.3-0ubuntu1_amd64.deb ...
+Unpacking libopenmpi-dev:amd64 (4.0.3-0ubuntu1) ...
+Setting up libibverbs1:amd64 (28.0-1ubuntu1) ...
+Setting up ibverbs-providers:amd64 (28.0-1ubuntu1) ...
+Setting up m4 (1.4.18-4) ...
+Setting up libasan6:amd64 (10.5.0-1ubuntu1~20.04) ...
+Setting up libnuma-dev:amd64 (2.0.12-1) ...
+Setting up autotools-dev (20180224.1) ...
+Setting up libhwloc15:amd64 (2.1.0+dfsg-4) ...
+Setting up libevent-core-2.1-7:amd64 (2.1.11-stable-1) ...
+Setting up autoconf (2.69-11.1) ...
+Setting up libnl-3-dev:amd64 (3.4.0-1ubuntu0.1) ...
+Setting up libpsm2-2 (11.2.86-1) ...
+Setting up openmpi-common (4.0.3-0ubuntu1) ...
+Setting up libpsm-infinipath1 (3.3+20.604758e7-6) ...
+update-alternatives: using /usr/lib/libpsm1/libpsm_infinipath.so.1.16 to provide /usr/lib/x86_64-linux-gnu/libpsm_infinipath.so.1 (libpsm_infinipath.so.1) in auto mode
+Setting up libllvm18:amd64 (1:18.1.8-11~20.04.2) ...
+Setting up libevent-pthreads-2.1-7:amd64 (2.1.11-stable-1) ...
+Setting up automake (1:1.16.1-4ubuntu6) ...
+update-alternatives: using /usr/bin/automake-1.16 to provide /usr/bin/automake (automake) in auto mode
+Setting up librdmacm1:amd64 (28.0-1ubuntu1) ...
+Setting up libevent-extra-2.1-7:amd64 (2.1.11-stable-1) ...
+Setting up libtool (2.4.6-14) ...
+Setting up libgcc-10-dev:amd64 (10.5.0-1ubuntu1~20.04) ...
+Setting up libevent-openssl-2.1-7:amd64 (2.1.11-stable-1) ...
+Setting up libhwloc-plugins:amd64 (2.1.0+dfsg-4) ...
+Setting up libnl-route-3-dev:amd64 (3.4.0-1ubuntu0.1) ...
+Setting up libltdl-dev:amd64 (2.4.6-14) ...
+Setting up libevent-dev (2.1.11-stable-1) ...
+Setting up libhwloc-dev:amd64 (2.1.0+dfsg-4) ...
+Setting up libclang-cpp18 (1:18.1.8-11~20.04.2) ...
+Setting up libfabric1 (1.6.2-3ubuntu0.1) ...
+Setting up libstdc++-10-dev:amd64 (10.5.0-1ubuntu1~20.04) ...
+Setting up libpmix2:amd64 (3.1.5-1) ...
+Setting up libopenmpi3:amd64 (4.0.3-0ubuntu1) ...
+Setting up libibverbs-dev:amd64 (28.0-1ubuntu1) ...
+Setting up libcaf-openmpi-3:amd64 (2.8.0-1) ...
+Setting up openmpi-bin (4.0.3-0ubuntu1) ...
+update-alternatives: using /usr/bin/mpirun.openmpi to provide /usr/bin/mpirun (mpirun) in auto mode
+update-alternatives: using /usr/bin/mpicc.openmpi to provide /usr/bin/mpicc (mpi) in auto mode
+Setting up libflang-18-dev (1:18.1.8-11~20.04.2) ...
+Setting up flang-18 (1:18.1.8-11~20.04.2) ...
+Setting up libcoarrays-dev:amd64 (2.8.0-1) ...
+Setting up libcoarrays-openmpi-dev:amd64 (2.8.0-1) ...
+Setting up libopenmpi-dev:amd64 (4.0.3-0ubuntu1) ...
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openmpi/include to provide /usr/include/x86_64-linux-gnu/mpi (mpi-x86_64-linux-gnu) in auto mode
+Processing triggers for libc-bin (2.31-0ubuntu9.18) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ which mpicc
+/usr/bin/mpicc
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ which mpirun
+/usr/bin/mpirun
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpicc --version
+gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --version
+mpirun (Open MPI) 4.0.3
+
+Report bugs to http://www.open-mpi.org/community/help/
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ cp fullStat_driver-ASSESS.c fullStat_driver_mpi.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  40K.txt  aeroRoutines.c            fullStat_driver_mpi.c      fullStat_driver_q1_v2.c  fullstat_q1
+1K.txt   4K.txt   autogenRoutines.c         fullStat_driver_q1.c       fullStat_driver_q1_v3.c  fullstat_q1_v2
+25K.txt  8K.txt   fullStat_driver-ASSESS.c  fullStat_driver_q1.c.save  fullstat                 fullstat_q1_v3
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ zip -r hpc_files.zip ~/hpcbd_coursework/mmu-hpc/2025-2026
+
+Command 'zip' not found, but can be installed with:
+
+sudo apt install zip
+
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ sudo apt install zip
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following NEW packages will be installed:
+  zip
+0 upgraded, 1 newly installed, 0 to remove and 41 not upgraded.
+Need to get 167 kB of archives.
+After this operation, 638 kB of additional disk space will be used.
+Get:1 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 zip amd64 3.0-11build1 [167 kB]
+Fetched 167 kB in 0s (6828 kB/s)
+Selecting previously unselected package zip.
+(Reading database ... 162032 files and directories currently installed.)
+Preparing to unpack .../zip_3.0-11build1_amd64.deb ...
+Unpacking zip (3.0-11build1) ...
+Setting up zip (3.0-11build1) ...
+Processing triggers for man-db (2.9.1-1) ...
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ zip -r hpc_files.zip ~/hpcbd_coursework/mmu-hpc/2025-2026
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/ (stored 0%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullstat_q1_v2 (deflated 73%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullStat_driver_q1.c.save (deflated 64%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullstat_q1 (deflated 74%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/1K.txt (stored 0%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullStat_driver_q1.c (deflated 65%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullStat_driver_mpi.c (deflated 64%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullStat_driver_q1_v3.c (deflated 68%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/aeroRoutines.c (deflated 61%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/40K.txt (stored 0%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullstat (deflated 75%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/autogenRoutines.c (deflated 53%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/25K.txt (stored 0%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/16K.txt (stored 0%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/4K.txt (stored 0%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullstat_q1_v3 (deflated 72%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullStat_driver-ASSESS.c (deflated 64%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/fullStat_driver_q1_v2.c (deflated 65%)
+  adding: home/vm_admin/hpcbd_coursework/mmu-hpc/2025-2026/8K.txt (stored 0%)
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  4K.txt             fullStat_driver-ASSESS.c   fullStat_driver_q1_v2.c  fullstat_q1_v2
+1K.txt   8K.txt             fullStat_driver_mpi.c      fullStat_driver_q1_v3.c  fullstat_q1_v3
+25K.txt  aeroRoutines.c     fullStat_driver_q1.c       fullstat                 hpc_files.zip
+40K.txt  autogenRoutines.c  fullStat_driver_q1.c.save  fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls -lh hpc_files
+ls: cannot access 'hpc_files': No such file or directory
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls -lh hpc_files.zip
+-rw-rw-r-- 1 vm_admin vm_admin 43K Mar 19 14:48 hpc_files.zip
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ Connection to lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com closed by remote host.
+Connection to lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com closed.
+
+C:\Users\PC>
+C:\Users\PC>
+C:\Users\PC>
+C:\Users\PC>
+C:\Users\PC>ssh -p 5070 vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com
+vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com's password:
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1089-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Mar 19 15:45:29 UTC 2026
+
+  System load:  0.36                Processes:             218
+  Usage of /:   24.0% of 123.87GB   Users logged in:       0
+  Memory usage: 0%                  IPv4 address for eth0: 10.0.0.74
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Infrastructure is not enabled.
+
+108 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+184 additional security updates can be applied with ESM Infra.
+Learn more about enabling ESM Infra service for Ubuntu 20.04 at
+https://ubuntu.com/20-04
+
+New release '22.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Thu Mar 19 14:32:03 2026 from 85.255.235.120
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$ ls
+hpcbd_coursework  mmu-hpc
+vm_admin@labY7013I:~$ cd hpcbd_coursework
+vm_admin@labY7013I:~/hpcbd_coursework$
+vm_admin@labY7013I:~/hpcbd_coursework$ ls
+mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework$ cd mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ ls
+2022-2023  2023-2024  2024-2025  2025-2026  lab01.tar  lab_CUDA  lab_MPI  lab_OpenMP  lab_compile
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ cd 2025-2026
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+ 16K.txt   4K.txt              fullStat_driver-ASSESS.c                  fullStat_driver_q1.c.save   fullstat_q1
+ 1K.txt    8K.txt              fullStat_driver_mpi.c                     fullStat_driver_q1_v2.c     fullstat_q1_v2
+ 25K.txt   aeroRoutines.c     'fullStat_driver_mpi_optimized edited.c'   fullStat_driver_q1_v3.c     fullstat_q1_v3
+ 40K.txt   autogenRoutines.c   fullStat_driver_q1.c                      fullstat                    hpc_files.zip
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mv "fullStat_driver_mpi_optimized edited.c" fullStat_driver_mpi_optimised_edited.c
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  4K.txt             fullStat_driver-ASSESS.c                fullStat_driver_q1.c.save  fullstat_q1
+1K.txt   8K.txt             fullStat_driver_mpi.c                   fullStat_driver_q1_v2.c    fullstat_q1_v2
+25K.txt  aeroRoutines.c     fullStat_driver_mpi_optimised_edited.c  fullStat_driver_q1_v3.c    fullstat_q1_v3
+40K.txt  autogenRoutines.c  fullStat_driver_q1.c                    fullstat                   hpc_files.zip
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  8K.txt                    fullStat_driver_mpi_optimised_edited.c  fullStat_driver_q1_v3.c  hpc_files.zip
+1K.txt   aeroRoutines.c            fullStat_driver_mpi_optimized.c         fullstat
+25K.txt  autogenRoutines.c         fullStat_driver_q1.c                    fullstat_q1
+40K.txt  fullStat_driver-ASSESS.c  fullStat_driver_q1.c.save               fullstat_q1_v2
+4K.txt   fullStat_driver_mpi.c     fullStat_driver_q1_v2.c                 fullstat_q1_v3
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpicc -O0 fullStat_driver_mpi_optimised_edited.c autogenRoutines.c -lm -o fullstat_mpi_fixed
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 1 ./fullstat_mpi_optimised_edited 16K.txt
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not access
+or execute an executable:
+
+Executable: ./fullstat_mpi_optimised_edited
+Node: labY7013I
+
+while attempting to start process rank 0.
+--------------------------------------------------------------------------
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  8K.txt                    fullStat_driver_mpi_optimised_edited.c  fullStat_driver_q1_v3.c  fullstat_q1_v3
+1K.txt   aeroRoutines.c            fullStat_driver_mpi_optimized.c         fullstat                 hpc_files.zip
+25K.txt  autogenRoutines.c         fullStat_driver_q1.c                    fullstat_mpi_fixed
+40K.txt  fullStat_driver-ASSESS.c  fullStat_driver_q1.c.save               fullstat_q1
+4K.txt   fullStat_driver_mpi.c     fullStat_driver_q1_v2.c                 fullstat_q1_v2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls -l fullstat_mpi_fixed
+-rwxrwxr-x 1 vm_admin vm_admin 21880 Mar 19 15:50 fullstat_mpi_fixed
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 1 ./fullstat_mpi_fixed 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.021966 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000018 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 0.274197 seconds
+Total stats wallclock time [0.274243 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.299447 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.025524 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000027 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 0.157140 seconds
+Total stats wallclock time [0.157195 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.182830 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 1K.txt
+we have 1000 data points to read
+There are allegedly 1000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+1000 data points successfully read [0.025085 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000023 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 0.148090 seconds
+Total stats wallclock time [0.148136 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.028951         9.984976        -0.086575               5.832599
+Eigen value of matrix: 5284.569226 (64 iterations)
+Completed (read+stats). [0.173319 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 1 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [7.310837 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000257 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 138.461368 seconds
+Total stats wallclock time [138.461669 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [145.778010 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 1 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [7.530064 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000258 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 138.969864 seconds
+Total stats wallclock time [138.970164 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [146.500343 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 1 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [7.351387 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000309 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 138.988510 seconds
+Total stats wallclock time [138.988886 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [146.340401 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [8.323858 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000152 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 77.202860 seconds
+Total stats wallclock time [77.203052 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [85.527028 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [8.255729 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000159 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 74.686303 seconds
+Total stats wallclock time [74.686498 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [82.942357 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [8.318730 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000149 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 79.696893 seconds
+Total stats wallclock time [79.697081 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [88.015940 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 4 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [9.672054 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000136 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 44.421120 seconds
+Total stats wallclock time [44.421293 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [54.093468 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 4 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [9.780404 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000125 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 43.203072 seconds
+Total stats wallclock time [43.203234 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [52.983768 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 4 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [9.704772 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000110 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 45.606360 seconds
+Total stats wallclock time [45.606507 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [55.311418 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 8 ./fullstat_mpi_fixed 16K.txt
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8
+slots that were requested by the application:
+
+  ./fullstat_mpi_fixed
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 8 ./fullstat_mpi_fixed 16K.txt
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8
+slots that were requested by the application:
+
+  ./fullstat_mpi_fixed
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 8 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [20.022259 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001230 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 36.826554 seconds
+Total stats wallclock time [36.827834 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [56.850305 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 8 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [20.213700 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000482 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 38.693284 seconds
+Total stats wallclock time [38.693817 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [58.907707 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 8 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [20.128710 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000505 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 34.697103 seconds
+Total stats wallclock time [34.697659 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [54.826573 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 12 ./fullstat_mp
+i_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [23.264998 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001913 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 30.902409 seconds
+Total stats wallclock time [30.904501 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [54.170913 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 12 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [23.621331 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001875 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 32.285779 seconds
+Total stats wallclock time [32.287881 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [55.910650 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 12 ./fullstat_mpi_fixed 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [22.860048 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001819 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 29.889019 seconds
+Total stats wallclock time [29.890927 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [52.751707 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 1 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [18.655904 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000391 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 276.133765 seconds
+Total stats wallclock time [276.134218 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [294.790685 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [20.917365 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000221 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 140.423109 seconds
+Total stats wallclock time [140.423367 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [161.340866 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [20.904615 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000219 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 140.531811 seconds
+Total stats wallclock time [140.532068 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [161.436814 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 2 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [20.955757 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000221 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 140.715994 seconds
+Total stats wallclock time [140.716253 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [161.672143 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 4 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [24.265254 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000177 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 73.591029 seconds
+Total stats wallclock time [73.591243 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [97.856640 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 4 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [24.171093 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000156 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 75.789285 seconds
+Total stats wallclock time [75.789479 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [99.960732 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 4 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [24.268017 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000135 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 73.654367 seconds
+Total stats wallclock time [73.654540 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [97.922703 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root -np 8 ./fullstat_mpi_fixed 25K.txt
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8
+slots that were requested by the application:
+
+  ./fullstat_mpi_fixed
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 8 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [28.643326 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001272 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 61.637741 seconds
+Total stats wallclock time [61.639051 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [90.282530 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 8 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [49.263502 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001995 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 61.538667 seconds
+Total stats wallclock time [61.540714 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [110.804465 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 8 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [30.912494 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000876 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 61.673298 seconds
+Total stats wallclock time [61.674211 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [92.586866 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 12 ./fullstat_mp
+i_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [55.037160 seconds]
+x[0]=6.803754
+Time for vector stats: 0.002544 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 59.130583 seconds
+Total stats wallclock time [59.133450 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [114.172083 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 12 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [54.023355 seconds]
+x[0]=6.803754
+Time for vector stats: 0.002434 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 60.142928 seconds
+Total stats wallclock time [60.145675 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [114.170611 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ mpirun --allow-run-as-root --oversubscribe -np 12 ./fullstat_mpi_fixed 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [55.961017 seconds]
+x[0]=6.803754
+Time for vector stats: 0.002026 seconds
+calculating eigenvalue to tolerance 0.01
+Time for eigen stats: 60.073248 seconds
+Total stats wallclock time [60.075474 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [116.037744 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ client_loop: send disconnect: Connection reset
+
+
+
+
+
+C:\Users\PC>ssh -p 5070 vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com
+vm_admin@lab-9bc5f34a-dd29-4aa2-9d4b-637494b22b89.westeurope.cloudapp.azure.com's password:
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1089-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sat Mar 21 13:00:57 UTC 2026
+
+  System load:  0.31                Processes:             222
+  Usage of /:   24.0% of 123.87GB   Users logged in:       0
+  Memory usage: 0%                  IPv4 address for eth0: 10.0.0.74
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Infrastructure is not enabled.
+
+108 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+184 additional security updates can be applied with ESM Infra.
+Learn more about enabling ESM Infra service for Ubuntu 20.04 at
+https://ubuntu.com/20-04
+
+New release '22.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Sat Mar 21 12:38:11 2026 from 148.252.144.65
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$
+vm_admin@labY7013I:~$ gcc -O0 -fopenmp fullStat_driver-ASSESS.c autogenRoutines.c -lm -o fullstat
+gcc: error: fullStat_driver-ASSESS.c: No such file or directory
+gcc: error: autogenRoutines.c: No such file or directory
+vm_admin@labY7013I:~$ ls
+hpcbd_coursework  mmu-hpc
+vm_admin@labY7013I:~$ cd hpcbd_coursework
+vm_admin@labY7013I:~/hpcbd_coursework$ ls
+mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework$ cd mmu-hpc
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ ls
+2022-2023  2023-2024  2024-2025  2025-2026  lab01.tar  lab_CUDA  lab_MPI  lab_OpenMP  lab_compile
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc$ cd 2025-2026
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  8K.txt                    fullStat_driver_mpi_optimised_edited.c  fullStat_driver_q1_v3.c  fullstat_q1_v3
+1K.txt   aeroRoutines.c            fullStat_driver_mpi_optimized.c         fullstat                 hpc_files.zip
+25K.txt  autogenRoutines.c         fullStat_driver_q1.c                    fullstat_mpi_fixed
+40K.txt  fullStat_driver-ASSESS.c  fullStat_driver_q1.c.save               fullstat_q1
+4K.txt   fullStat_driver_mpi.c     fullStat_driver_q1_v2.c                 fullstat_q1_v2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ gcc -O0 -fopenmp fullStat_driver-ASSESS.c autogenRoutines.c -lm -o fullstat
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.783754 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000451 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 267.572869 seconds
+Total stats wallclock time [267.573362 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [277.357673 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.761862 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000462 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 268.348103 seconds
+Total stats wallclock time [268.348606 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [278.110600 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.918087 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000454 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 265.638360 seconds
+Total stats wallclock time [265.638854 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [275.557089 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.841079 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000496 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 267.405950 seconds
+Total stats wallclock time [267.406488 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [277.247694 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.765878 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000491 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 265.934032 seconds
+Total stats wallclock time [265.934565 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [275.700570 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.847787 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000488 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.638163 seconds
+Total stats wallclock time [269.638714 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.486634 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.833006 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000529 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.284149 seconds
+Total stats wallclock time [269.284716 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.117853 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.763407 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000522 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 266.291368 seconds
+Total stats wallclock time [266.291929 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [276.055520 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.756726 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000525 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 266.506940 seconds
+Total stats wallclock time [266.507509 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [276.264365 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.882531 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000658 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.175746 seconds
+Total stats wallclock time [269.176452 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.059112 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.801069 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000648 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 267.663506 seconds
+Total stats wallclock time [267.664200 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [277.465400 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.807339 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000671 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 267.748639 seconds
+Total stats wallclock time [267.749358 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [277.556829 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.810796 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000769 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 267.621206 seconds
+Total stats wallclock time [267.622022 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [277.432957 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.766601 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000798 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 265.511418 seconds
+Total stats wallclock time [265.512263 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [275.279005 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.928871 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000766 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.939031 seconds
+Total stats wallclock time [269.939843 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.868850 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.119911 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000305 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 145.178797 seconds
+Total stats wallclock time [145.179162 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [149.299606 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.215270 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000303 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 148.724898 seconds
+Total stats wallclock time [148.725243 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [152.940627 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.184652 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000304 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.466608 seconds
+Total stats wallclock time [146.466953 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.651731 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.130180 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000362 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 147.051306 seconds
+Total stats wallclock time [147.051726 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.182030 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.102730 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000356 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.534530 seconds
+Total stats wallclock time [146.534929 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.637782 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.228523 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000368 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 147.503195 seconds
+Total stats wallclock time [147.503608 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.732251 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.252450 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000449 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.685673 seconds
+Total stats wallclock time [146.686164 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.938741 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.142007 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000385 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.925746 seconds
+Total stats wallclock time [146.926176 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.068307 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.181024 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000419 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.475064 seconds
+Total stats wallclock time [146.475526 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.656686 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.150647 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000528 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 147.255021 seconds
+Total stats wallclock time [147.255592 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.406364 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.102772 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000536 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.446457 seconds
+Total stats wallclock time [146.447044 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.549941 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.149533 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000513 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.813093 seconds
+Total stats wallclock time [146.813652 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.963308 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.161946 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000644 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 147.190491 seconds
+Total stats wallclock time [147.191181 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.353308 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.187811 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000630 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 147.587771 seconds
+Total stats wallclock time [147.588447 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.776388 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.135408 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000661 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 147.195707 seconds
+Total stats wallclock time [147.196413 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [151.331953 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ls
+16K.txt  8K.txt                    fullStat_driver_mpi_optimised_edited.c  fullStat_driver_q1_v3.c  fullstat_q1_v3
+1K.txt   aeroRoutines.c            fullStat_driver_mpi_optimized.c         fullstat                 hpc_files.zip
+25K.txt  autogenRoutines.c         fullStat_driver_q1.c                    fullstat_mpi_fixed
+40K.txt  fullStat_driver-ASSESS.c  fullStat_driver_q1.c.save               fullstat_q1
+4K.txt   fullStat_driver_mpi.c     fullStat_driver_q1_v2.c                 fullstat_q1_v2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ gcc -O0 -fopenmp fullStat_driver_q1.c autogenRoutines.c -lm -o fullstat_q1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.222988 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000294 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 145.195913 seconds
+Total stats wallclock time [145.196249 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [149.419365 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.204060 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000260 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.084932 seconds
+Total stats wallclock time [146.085236 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.289413 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.165827 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000285 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 145.710637 seconds
+Total stats wallclock time [145.710965 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [149.876914 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.289010 seconds]
+x[0]=6.803754
+Time for vector stats: 0.001542 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 145.705545 seconds
+Total stats wallclock time [145.707139 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [149.996290 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 16K.txt
+we have 16000 data points to read
+There are allegedly 16000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+16000 data points successfully read [4.263339 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000480 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 146.186257 seconds
+Total stats wallclock time [146.186787 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000895         9.999725        0.056773                5.792664
+Eigen value of matrix: 81572.218349 (47 iterations)
+Completed (read+stats). [150.450251 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=1
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.934340 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000458 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.249048 seconds
+Total stats wallclock time [269.249546 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.184022 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=2
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.891423 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000373 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 269.939074 seconds
+Total stats wallclock time [269.939486 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [279.831044 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=4
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.949866 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000315 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 270.239919 seconds
+Total stats wallclock time [270.240279 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [280.190298 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=8
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.818184 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000411 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 266.852601 seconds
+Total stats wallclock time [266.853064 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [276.671385 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ export OMP_NUM_THREADS=12
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ ./fullstat_q1 25K.txt
+we have 25000 data points to read
+There are allegedly 25000 data points to read
+range 20.000000: from -10.000000 to 10.000000
+normalise: 9.31323e-09
+RAND_MAX: 2147483647
+25000 data points successfully read [9.801920 seconds]
+x[0]=6.803754
+Time for vector stats: 0.000512 seconds
+calculating eigenvalue to tolerance 0.010000
+Time for eigen stats: 265.803768 seconds
+Total stats wallclock time [265.804328 seconds]
+Stats table
+Min abs val     Max abs val     Mean            Std Dev
+0.000597         9.999855        -0.001371               5.784907
+Eigen value of matrix: 127425.006948 (46 iterations)
+Completed (read+stats). [275.606379 seconds]
+vm_admin@labY7013I:~/hpcbd_coursework/mmu-hpc/2025-2026$ client_loop: send disconnect: Connection reset
+
+C:\Users\PC>
